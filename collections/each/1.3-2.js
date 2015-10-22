@@ -33,21 +33,24 @@ var arr = [{
 
 
 /**
- * 如果中途出错，错误将马上传给最终的callback。同一批中的未执行完的任务还将继续执行，但下一批及以后的不再执行。
+ * 如果中途出错，错误将马上传给最终的callback。
+ * 同一批中的未执行完的任务还将继续执行，但下一批及以后的不再执行。
  */
 async.eachLimit(arr, 2, function (item, callback) {
-    log('1.6 enter: ' + item.name);
+    log('1.3-2 enter: ' + item.name);
     setTimeout(function () {
-        log('1.6 handle: ' + item.name);
+        log('1.3-2 handle: ' + item.name);
         if (item.name === 'Jack') {
             callback('myerr');
         }
     }, item.delay);
 }, function (err) {
-    log('1.6 err: ' + err);
+    log('1.3-2 err: ' + err);
 });
-// 42.248> 1.6 enter: Jack
-// 42.248> 1.6 enter: Mike
-// 42.352> 1.6 handle: Mike
-// 42.462> 1.6 handle: Jack
-// 42.462> 1.6 err: myerr
+
+// 输出如下
+//56.683> 1.3-2 enter: Jack
+//56.692> 1.3-2 enter: Mike
+//56.797> 1.3-2 handle: Mike
+//56.895> 1.3-2 handle: Jack
+//56.896> 1.3-2 err: myerr

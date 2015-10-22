@@ -36,18 +36,20 @@ var arr = [{
  * 与each相似，但不是并行执行。而是一个个按顺序执行。
  */
 async.eachSeries(arr, function (item, callback) {
-    log('1.3 enter: ' + item.name);
+    log('1.2 enter: ' + item.name);
     setTimeout(function () {
-        log('1.3 handle: ' + item.name);
+        log('1.2 handle: ' + item.name);
         callback(null, item.name);
     }, item.delay);
 }, function (err) {
-    log('1.3 err: ' + err);
+    log('1.2 err: ' + err);
 });
-// 42.247> 1.3 enter: Jack
-// 42.459> 1.3 handle: Jack
-// 42.459> 1.3 enter: Mike
-// 42.569> 1.3 handle: Mike
-// 42.569> 1.3 enter: Freewind
-// 42.883> 1.3 handle: Freewind
-// 42.883> 1.3 err: undefined
+// 输出如下
+
+//28.913> 1.2 enter: Jack
+//29.129> 1.2 handle: Jack
+//29.129> 1.2 enter: Mike
+//29.234> 1.2 handle: Mike
+//29.234> 1.2 enter: Freewind
+//29.538> 1.2 handle: Freewind
+//29.538> 1.2 err: null

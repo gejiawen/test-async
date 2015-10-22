@@ -36,19 +36,21 @@ var arr = [{
  * 分批执行，第二个参数是每一批的个数。每一批内并行执行，但批与批之间按顺序执行。
  */
 async.eachLimit(arr, 2, function (item, callback) {
-    log('1.5 enter: ' + item.name);
+    log('1.3 enter: ' + item.name);
     setTimeout(function () {
-        log('1.5 handle: ' + item.name);
+        log('1.3 handle: ' + item.name);
         callback(null, item.name);
     }, item.delay);
 }, function (err) {
-    log('1.5 err: ' + err);
+    log('1.3 err: ' + err);
 });
-// 42.247> 1.5 enter: Jack
-// 42.248> 1.5 enter: Mike
-// 42.351> 1.5 handle: Mike
-// 42.352> 1.5 enter: Freewind
-// 42.461> 1.5 handle: Jack
-// 42.664> 1.5 handle: Freewind
-// 42.664> 1.5 err: undefined
+
+// 输出如下
+//04.091> 1.3 enter: Jack
+//04.101> 1.3 enter: Mike
+//04.206> 1.3 handle: Mike
+//04.207> 1.3 enter: Freewind
+//04.305> 1.3 handle: Jack
+//04.509> 1.3 handle: Freewind
+//04.509> 1.3 err: null
 

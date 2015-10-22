@@ -11,11 +11,12 @@ var log = t.log;
 
 /**
  * 如果想对同一个集合中的所有元素都执行同一个异步操作，可以利用each函数。
+ * each还有两种衍化用法, `eachSeries`和`eachLimit`
  *
  * async提供了三种方式：
- * 1. 集合中所有元素并行执行
- * 2. 一个一个顺序执行
- * 3. 分批执行，同一批内并行，批与批之间按顺序
+ * 1. (`each`)集合中所有元素并行执行
+ * 2. (`eachSeries`)一个一个顺序执行
+ * 3. (`eachLimit`)分批执行，同一批内并行，批与批之间按顺序
  *
  * 如果中途出错，则错误将上传给最终的callback处理。其它已经启动的任务继续执行，未启动的忽略。
  */
@@ -46,11 +47,11 @@ async.each(arr, function (item, callback) {
     log('1.1 err: ' + err);
 });
 // 输出如下：
-// 42.244> 1.1 enter: Jack
-// 42.245> 1.1 enter: Mike
-// 42.245> 1.1 enter: Freewind
-// 42.350> 1.1 handle: Mike
-// 42.445> 1.1 handle: Jack
-// 42.554> 1.1 handle: Freewind
-// 42.554> 1.1 err: undefined
+//23.141> 1.1 enter: Jack
+//23.148> 1.1 enter: Mike
+//23.149> 1.1 enter: Freewind
+//23.252> 1.1 handle: Mike
+//23.352> 1.1 handle: Jack
+//23.454> 1.1 handle: Freewind
+//23.455> 1.1 err: null
 

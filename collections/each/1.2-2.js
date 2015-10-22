@@ -35,16 +35,18 @@ var arr = [{
  * 如果中途出错，则马上把错误传给最终的callback，还未执行的不再执行。
  */
 async.eachSeries(arr, function (item, callback) {
-    log('1.4 enter: ' + item.name);
+    log('1.2-2 enter: ' + item.name);
     setTimeout(function () {
-        log('1.4 handle: ' + item.name);
+        log('1.2-2 handle: ' + item.name);
         if (item.name === 'Jack') {
             callback('myerr');
         }
     }, item.delay);
 }, function (err) {
-    log('1.4 err: ' + err);
+    log('1.2-2 err: ' + err);
 });
-// 42.247> 1.4 enter: Jack
-// 42.460> 1.4 handle: Jack
-// 42.460> 1.4 err: myerr
+
+// 输出如下
+//24.523> 1.2-2 enter: Jack
+//24.737> 1.2-2 handle: Jack
+//24.738> 1.2-2 err: myerr

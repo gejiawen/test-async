@@ -36,21 +36,21 @@ var arr = [{
  * 如果中途出错，则出错后马上调用最终的callback。其它未执行完的任务继续执行。
  */
 async.each(arr, function (item, callback) {
-    log('1.2 enter: ' + item.name);
+    log('1.1-2 enter: ' + item.name);
     setTimeout(function () {
-        log('1.2 handle: ' + item.name);
+        log('1.1-2 handle: ' + item.name);
         if (item.name === 'Jack') {
             callback('myerr');
         }
     }, item.delay);
 }, function (err) {
-    log('1.2 err: ' + err);
+    log('1.1-2 err: ' + err);
 });
 // 输出如下：
-// 42.246> 1.2 enter: Jack
-// 42.246> 1.2 enter: Mike
-// 42.246> 1.2 enter: Freewind
-// 42.350> 1.2 handle: Mike
-// 42.445> 1.2 handle: Jack
-// 42.446> 1.2 err: myerr
-// 42.555> 1.2 handle: Freewind
+//53.877> 1.1-2 enter: Jack
+//53.885> 1.1-2 enter: Mike
+//53.885> 1.1-2 enter: Freewind
+//53.991> 1.1-2 handle: Mike
+//54.089> 1.1-2 handle: Jack
+//54.090> 1.1-2 err: myerr
+//54.189> 1.1-2 handle: Freewind
