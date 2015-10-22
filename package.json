@@ -1,0 +1,23 @@
+{
+  "name": "test-async",
+  "version": "1.0.0",
+  "description": "a demo for testing async",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gejiawen/test-async.git"
+  },
+  "author": "gejiawen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gejiawen/test-async/issues"
+  },
+  "homepage": "https://github.com/gejiawen/test-async#readme",
+  "dependencies": {
+    "async": "^1.4.2",
+    "moment": "^2.10.6"
+  }
+}
