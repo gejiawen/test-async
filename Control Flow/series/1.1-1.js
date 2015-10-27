@@ -24,18 +24,22 @@ var log = t.log;
  */
 async.series([
     function (cb) {
-        t.inc(3, cb);
+        t.inc2(3, cb);
     },
     function (cb) {
-        t.err('test_err', cb);
+        t.err2('test_err', cb);
     },
     function (cb) {
-        t.inc(8, cb);
+        t.inc2(8, cb);
     }
 ], function (err, results) {
     log('1.1-1 err: ', err);
     log('1.1-1 results: ', results);
 });
 
-//50.744> 1.1-1 err: test_err
-//50.751> 1.1-1 results: [ 4, undefined ]
+//48.465> enter: 3, delay: 200
+//48.676> handle: 3, delay: 200
+//48.678> enter: test_err, delay: 200
+//48.881> handle: test_err, delay: 200
+//48.882> 1.1-1 err: test_err
+//48.882> 1.1-1 results: [ 4, undefined ]

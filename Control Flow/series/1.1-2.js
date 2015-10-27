@@ -25,27 +25,39 @@ var log = t.log;
  */
 async.series([
     function (cb) {
-        t.fire(3, cb);
+        t.fire2(3, cb);
     },
     function (cb) {
-        t.fire(undefined, cb);
+        t.fire2(undefined, cb);
     },
     function (cb) {
-        t.fire(null, cb);
+        t.fire2(null, cb);
     },
     function (cb) {
-        t.fire({}, cb);
+        t.fire2({}, cb);
     },
     function (cb) {
-        t.fire([], cb);
+        t.fire2([], cb);
     },
     function (cb) {
-        t.fire('abc', cb)
+        t.fire2('abc', cb)
     }
 ], function (err, results) {
     log('1.1-2 err: ', err);
     log('1.1-2 results: ', results);
 });
 
-//59.319> 1.1-2 err: null
-//59.328> 1.1-2 results: [ 3, undefined, null, {}, [], 'abc' ]
+//45.112> enter: 3, delay: 200
+//45.323> handle: 3, delay: 200
+//45.325> enter: undefined, delay: 200
+//45.531> handle: undefined, delay: 200
+//45.532> enter: null, delay: 200
+//45.734> handle: null, delay: 200
+//45.735> enter: {}, delay: 200
+//45.941> handle: {}, delay: 200
+//45.942> enter: [], delay: 200
+//46.142> handle: [], delay: 200
+//46.143> enter: "abc", delay: 200
+//46.347> handle: "abc", delay: 200
+//46.348> 1.1-2 err: null
+//46.349> 1.1-2 results: [ 3, undefined, null, {}, [], 'abc' ]

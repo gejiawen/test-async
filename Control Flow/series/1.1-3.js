@@ -26,21 +26,27 @@ var log = t.log;
  */
 async.series({
     a: function (cb) {
-        t.inc(3, cb);
+        t.inc2(3, cb);
     },
     b: function (cb) {
-        t.fire(undefined, cb);
+        t.fire2(undefined, cb);
     },
     c: function (cb) {
-        t.err('myerr', cb);
+        t.err2('myerr', cb);
     },
     d: function (cb) {
-        t.inc(8, cb);
+        t.inc2(8, cb);
     }
 }, function (err, results) {
     log('1.1-3 err: ', err);
     log('1.1-3 results: ', results);
 });
 
-//14.321> 1.1-3 err: myerr
-//14.329> 1.1-3 results: { a: 4, b: undefined, c: undefined }
+//39.627> enter: 3, delay: 200
+//39.838> handle: 3, delay: 200
+//39.840> enter: undefined, delay: 200
+//40.046> handle: undefined, delay: 200
+//40.047> enter: myerr, delay: 200
+//40.253> handle: myerr, delay: 200
+//40.254> 1.1-3 err: myerr
+//40.254> 1.1-3 results: { a: 4, b: undefined, c: undefined }
