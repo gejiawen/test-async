@@ -18,6 +18,16 @@ exports.inc = function (n, callback, timeout) {
     }, timeout);
 };
 
+exports.inc2 = function (n, callback, timeout) {
+    //将参数n自增1之后的结果返回给async
+    timeout = timeout || 200;
+    exports.log('enter: ' + n + ', delay: ' + timeout);
+    setTimeout(function () {
+        exports.log('handle: ' + n + ', delay: ' + timeout);
+        callback(null, n + 1);
+    }, timeout);
+};
+
 exports.fire = function (obj, callback, timeout) {
     //直接将obj的内容返回给async
     timeout = timeout || 200;
@@ -26,10 +36,31 @@ exports.fire = function (obj, callback, timeout) {
     }, timeout);
 };
 
+// 添加log信息
+exports.fire2 = function (obj, callback, timeout) {
+    //直接将obj的内容返回给async
+    timeout = timeout || 200;
+    exports.log('enter: ' + JSON.stringify(obj) + ', delay: ' + timeout);
+    setTimeout(function () {
+        exports.log('handle: ' + JSON.stringify(obj) + ', delay: ' + timeout);
+        callback(null, obj);
+    }, timeout);
+};
+
 exports.err = function (errMsg, callback, timeout) {
     //模拟一个错误的产生，让async各个函数末尾的callback接收到。
     timeout = timeout || 200;
     setTimeout(function () {
+        callback(errMsg);
+    }, timeout);
+};
+
+exports.err2 = function (errMsg, callback, timeout) {
+    //模拟一个错误的产生，让async各个函数末尾的callback接收到。
+    timeout = timeout || 200;
+    exports.log('enter: ' + errMsg + ', delay: ' + timeout);
+    setTimeout(function () {
+        exports.log('handle: ' + errMsg + ', delay: ' + timeout);
         callback(errMsg);
     }, timeout);
 };
